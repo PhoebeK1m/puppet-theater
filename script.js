@@ -98,7 +98,7 @@ const rigRotation = (
 // Animate Position Helper Function
 const rigPosition = (
   name,
-  position = { x: 10, y: 0, z: - },
+  position = { x: 0, y: 0, z: 0 },
   dampener = 1,
   lerpAmount = 0.3
 ) => {
