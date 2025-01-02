@@ -51,7 +51,7 @@ const loader = new THREE.GLTFLoader();
 loader.crossOrigin = "anonymous";
 // Import model from URL, add your own model here
 loader.load(
-  "https://cdn.glitch.com/29e07830-2317-4b15-a044-135e73c7f840%2FAshtra.vrm?v=1630342336981",
+  "https://cdn.glitch.global/63eb2de6-4325-45a2-9cd4-0554515eb3b3/finalfr.vrm?v=1735853990829",
 
   gltf => {
     THREE.VRMUtils.removeUnnecessaryJoints(gltf.scene);
@@ -98,7 +98,7 @@ const rigRotation = (
 // Animate Position Helper Function
 const rigPosition = (
   name,
-  position = { x: 0, y: 0, z: 0 },
+  position = { x: 10, y: 0, z: - },
   dampener = 1,
   lerpAmount = 0.3
 ) => {
