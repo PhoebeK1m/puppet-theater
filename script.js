@@ -27,10 +27,12 @@ orbitControls.update();
 // scene
 const scene = new THREE.Scene();
 
-const loader = new THREE.TextureLoader();
-loader.load('path/to/your-image.jpg', (texture) => {
-    scene.background = texture; // Set the image as the background
-});
+// const loader = new THREE.TextureLoader();
+// loader.load('https://example.com/your-image.jpg', (texture) => {
+//     scene.background = texture; // Set the URL image as the background
+// }, undefined, (error) => {
+//     console.error('Error loading the image:', error);
+// });
 
 // light
 const light = new THREE.DirectionalLight(0xffffff);
