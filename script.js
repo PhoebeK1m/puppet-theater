@@ -35,34 +35,22 @@ scene.add(light);
 // Main Render Loop
 const clock = new THREE.Clock();
 
-
+/* BACKGROUNG IMAGE SET UP*/
+//import image texture
 const textureLoader = new THREE.TextureLoader();
 const backgroundTexture = textureLoader.load('https://cdn.glitch.global/63eb2de6-4325-45a2-9cd4-0554515eb3b3/e6835457-699b-4c0d-a10b-d12f253d95d1.image.png?v=1736803994835', () => {
-  // After loading, adjust the aspect ratio based on the texture's dimensions
   const aspectRatio = backgroundTexture.image.width / backgroundTexture.image.height;
-  backgroundPlane.scale.set(aspectRatio, 20, 1); // Adjust the plane's scale to match the image aspect ratio
+  backgroundPlane.scale.set(aspectRatio, 0.5, 0.5);
 });
-
-// Create a plane geometry for the background
-const backgroundGeometry = new THREE.PlaneGeometry(50, 50); // Use a default size, it will be scaled later
-
-// Create a material with the background texture
+const backgroundGeometry = new THREE.PlaneGeometry(50, 50);
 const backgroundMaterial = new THREE.MeshBasicMaterial({
   map: backgroundTexture,
-  side: THREE.DoubleSide, // Make it visible from both sides
-  depthWrite: false, // Ensure it does not affect the depth buffer
-  transparent: true, // Allow transparency
 });
-
-// Create the background mesh
 const backgroundPlane = new THREE.Mesh(backgroundGeometry, backgroundMaterial);
+backgroundPlane.position.set(0, 5, -100);
 
-// Position the plane behind the VRM model
-backgroundPlane.position.set(0, 0, -50); // Adjust position based on your model's scale
-backgroundPlane.rotation.set(-Math.PI / 2, , 0);
-
-// Add the background to the scene
 scene.add(backgroundPlane);
+
 
 function animate() {
   requestAnimationFrame(animate);
