@@ -1,10 +1,4 @@
 //using kalidokit from yeemachine: https://github.com/yeemachine/kalidokit
-// const loader = new THREE.TextureLoader();
-// loader.load('https://raw.githubusercontent.com/PhoebeK1m/virtual-puppet/13ac68580fdd5ee11c9af5ce77749fecfcb3ec71/backgroundpark.jpg', (texture) => {
-//     scene.background = texture; // Set the URL image as the background
-// }, undefined, (error) => {
-//     console.error('Error loading the image:', error);
-// });
 
 //Import Helper Functions from Kalidokit
 const remap = Kalidokit.Utils.remap;
@@ -32,14 +26,6 @@ orbitControls.update();
 
 // scene
 const scene = new THREE.Scene();
-
-// // Load background as a cube map or regular background
-// const textureLoader = new THREE.TextureLoader();
-// const backgroundTexture = textureLoader.load('https://github.com/PhoebeK1m/virtual-puppet/blob/13ac68580fdd5ee11c9af5ce77749fecfcb3ec71/backgroundpark.jpg?raw=true');
-
-// // Ensure background doesn't interfere with model visibility
-// scene.background = backgroundTexture;
-// scene.fog = null; 
 
 // light
 const light = new THREE.DirectionalLight(0xffffff);
