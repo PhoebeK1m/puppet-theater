@@ -13,8 +13,8 @@ renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
 
 // camera
-const orbitCamera = new THREE.PerspectiveCamera(35,window.innerWidth / window.innerHeight,0.1,1000);
-orbitCamera.position.set(0.0, 1.4, 0.7);
+const orbitCamera = new THREE.PerspectiveCamera(50,window.innerWidth / window.innerHeight,0.1,1000);
+orbitCamera.position.set(0.0, 1.4, 2.0);
 
 // controls
 const orbitControls = new THREE.OrbitControls(orbitCamera, renderer.domElement);
@@ -60,6 +60,7 @@ loader.load(
       scene.add(vrm.scene);
       currentVrm = vrm;
       currentVrm.scene.rotation.y = Math.PI; // Rotate model 180deg to face camera
+      currentVrm.scene.position.set(0, 0, -20.0);
     });
   },
 
@@ -156,6 +157,7 @@ const animateVRM = (vrm, results) => {
   if (!vrm) {
     return;
   }   
+
   // Take the results from `Holistic` and animate character based on its Face, Pose, and Hand Keypoints.
   let riggedPose, riggedLeftHand, riggedRightHand, riggedFace;
 
