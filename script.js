@@ -13,7 +13,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
 
 // camera
-const orbitCamera = new THREE.PerspectiveCamera(50,window.innerWidth / window.innerHeight,0.1,1000);
+const orbitCamera = new THREE.PerspectiveCamera(20,window.innerWidth / window.innerHeight,0.1,1000);
 orbitCamera.position.set(0.0, 1.4, 2.0);
 
 // controls
@@ -60,7 +60,7 @@ loader.load(
       scene.add(vrm.scene);
       currentVrm = vrm;
       currentVrm.scene.rotation.y = Math.PI; // Rotate model 180deg to face camera
-      currentVrm.scene.position.set(0, 0, -20.0);
+      currentVrm.scene.position.set(0, 0, -10.0);
     });
   },
 
@@ -186,16 +186,16 @@ const animateVRM = (vrm, results) => {
       video:videoElement,
     });
     rigRotation("Hips", riggedPose.Hips.rotation, 0.7);
-    rigPosition(
-      "Hips",
-      {
-        x: -riggedPose.Hips.position.x, // Reverse direction
-        y: riggedPose.Hips.position.y + 1, // Add a bit of height
-        z: -riggedPose.Hips.position.z // Reverse direction
-      },
-      1,
-      0.07
-    );
+    // rigPosition(
+    //   "Hips",
+    //   {
+    //     x: -riggedPose.Hips.position.x, // Reverse direction
+    //     y: riggedPose.Hips.position.y, // Add a bit of height
+    //     z: -riggedPose.Hips.position.z// Reverse direction
+    //   },
+    //   1,
+    //   0.07
+    // );
 
     rigRotation("Chest", riggedPose.Spine, 0.25, .3);
     rigRotation("Spine", riggedPose.Spine, 0.45, .3);
