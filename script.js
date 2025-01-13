@@ -1,3 +1,5 @@
+//using kalidokit from yeemachine: https://github.com/yeemachine/kalidokit
+
 //Import Helper Functions from Kalidokit
 const remap = Kalidokit.Utils.remap;
 const clamp = Kalidokit.Utils.clamp;
@@ -13,8 +15,8 @@ renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
 
 // camera
-const orbitCamera = new THREE.PerspectiveCamera(20,window.innerWidth / window.innerHeight,0.1,1000);
-orbitCamera.position.set(0.0, 1.4, 2.0);
+const orbitCamera = new THREE.PerspectiveCamera(10,window.innerWidth / window.innerHeight,0.1,1000);
+orbitCamera.position.set(0.0, 1.4, 0);
 
 // controls
 const orbitControls = new THREE.OrbitControls(orbitCamera, renderer.domElement);
@@ -60,7 +62,7 @@ loader.load(
       scene.add(vrm.scene);
       currentVrm = vrm;
       currentVrm.scene.rotation.y = Math.PI; // Rotate model 180deg to face camera
-      currentVrm.scene.position.set(0, 0, -10.0);
+      currentVrm.scene.position.set(0, -1.5, -20.0);
     });
   },
 
