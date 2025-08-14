@@ -1,0 +1,23 @@
+npm i three @pixiv/three-vrm-animation
+
+1. start server
+npx vite
+
+MIXAMO->vrm
+1. create fbx with animation, all bones needed
+2. import fbx animation, go into pose mode for fbx, change into t pose, use rokoko to retarget bones and animation
+3. upgrade vrm model to 1.0
+4. download .vrma
+5. download model without animation
+
+fbx->unity
+1. import packages (univrm)
+2. select->materials->unpack
+3. add texture to materials
+4. configure rig (humanoid)
+5. freeze tpose
+6. export as temp
+7. import temp
+8. add spring bone component to secondary
+9. select vrm blendshape - PREVIEW WINDOW TO VIEW
+10. export vrm!!
