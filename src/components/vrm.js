@@ -23,3 +23,4 @@ export function loadVRMModel(scene, gltfLoader, modelUrl) {
     });
 }
 
+

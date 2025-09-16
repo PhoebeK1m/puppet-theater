@@ -9,7 +9,7 @@ import { createOrbitRig } from './components/camera.js';
 import { loadVRMModel } from './components/vrm.js';
 import { loadVRMA, playVRMAAnimation, stopVRMAAnimation } from './components/vrma.js';
 import { loadBackground } from './components/background.js';
-
+import { holistic, onResults, animateWithResults } from './components/mediapipe.js';
 
 // Global
 let currentVrm;
@@ -51,25 +51,26 @@ gltfLoader.register((parser) => new VRMAnimationLoaderPlugin(parser));
 gltfLoader.crossOrigin = 'anonymous';
 
 // Load VRM model asynchronously
-loadVRMModel(scene, gltfLoader, '/weighted.vrm')
+loadVRMModel(scene, gltfLoader, '/viseme.vrm')
   .then((vrm) => {
     currentVrm = vrm;  // Set currentVrm once it is loaded
 
     // Load VRMA animation after the VRM model is loaded
-    loadVRMA(gltfLoader, currentVrm, '/startwalking.vrma', (clip) => {
+    loadVRMA(gltfLoader, currentVrm, './talking.vrma', (clip) => {
       vrmaClip = clip;
     });
+    console.log("Available bones:", vrm.humanoid?.normalizedHumanBones);
   })
   .catch((error) => {
     console.error('Error loading VRM model:', error);
-  });
-
+});
 
 // Play/stop VRMA animation
 function toggleVRMA() {
   if (isVRMAPlaying) {
     stopVRMAAnimation(vrmaAction);
     isVRMAPlaying = false;
+
   } else {
     if (!mixer) mixer = new THREE.AnimationMixer(currentVrm.scene);
     vrmaAction = playVRMAAnimation(mixer, vrmaClip, currentVrm);
@@ -96,7 +97,7 @@ const camParams = {
   yawCenter: -Math.PI/2,
   pitchCenter: 0,
   yawRange: Math.PI / 12,   // left/right limit
-  pitchRange: Math.PI / 12, // up/down limit
+  pitchRange: Math.PI / 32, // up/down limit
   smooth: 6,
 };
 
@@ -104,18 +105,22 @@ let curYaw = camParams.yawCenter;
 let curPitch = camParams.pitchCenter;
 
 // animation: vrm + camera
+holistic.onResults(onResults);
+
 function animate() {
   requestAnimationFrame(animate);
   const delta = clock.getDelta();
 
-  if (currentVrm) currentVrm.update(delta);
-  if (mixer) mixer.update(delta);
-
   if (currentVrm) {
+    currentVrm.update(delta);
+    if (!isVRMAPlaying){
+      // console.log("Humanoid bones:", currentVrm.humanoid?.humanBones);
+      animateWithResults(currentVrm);
+    }
     const targetYaw = THREE.MathUtils.clamp(
-      camParams.yawCenter + mouse.x * camParams.yawRange,
-      camParams.yawCenter - camParams.yawRange,
-      camParams.yawCenter + camParams.yawRange
+        camParams.yawCenter + mouse.x * camParams.yawRange,
+        camParams.yawCenter - camParams.yawRange,
+        camParams.yawCenter + camParams.yawRange
     );
 
     const targetPitch = THREE.MathUtils.clamp(
@@ -135,9 +140,9 @@ function animate() {
     );
     orbitCamera.lookAt(p);
   }
+  if (mixer) mixer.update(delta);
 
   renderer.render(scene, orbitCamera);
 }
-
 
 animate();

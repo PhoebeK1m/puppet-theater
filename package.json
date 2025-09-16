@@ -1,7 +1,11 @@
 {
   "dependencies": {
+    "@mediapipe/camera_utils": "^0.3.1675466862",
+    "@mediapipe/drawing_utils": "^0.3.1675466124",
+    "@mediapipe/holistic": "^0.5.1675471629",
     "@pixiv/three-vrm": "^3.4.2",
     "@pixiv/three-vrm-animation": "^3.4.2",
+    "kalidokit": "^1.1.5",
     "three": "^0.179.1"
   },
   "name": "website",

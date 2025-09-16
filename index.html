@@ -3,11 +3,32 @@
   <head>
     <meta charset="utf-8" />
     <title>Animated Me</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="src/style.css" />
     <link rel="icon" href="public/favicon.ico">
-  </head>
+    <!--     Mediapipe or Tensorflow.js -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic@0.5.1635989137/holistic.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--     Mediapipe Drawing Tools -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--     Mediapipe Camera Tools -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--     Kalidokit Kinematic Solver -->
+    <script src="https://cdn.jsdelivr.net/npm/kalidokit@1.1/dist/kalidokit.umd.js"></script>
+  </head> 
   <body>
+    <div class="preview">
+      <video class="input_video" width="1280px" height="720px"  autoplay muted playsinline></video>
+      <canvas class="guides"></canvas>
+    </div>
     <script type="module" src="src/main.js"></script>
-    <button id="toggleIdle">Toggle Idle</button>
+    <button id="toggleIdle">Toggle Animation</button>
   </body>
 </html>

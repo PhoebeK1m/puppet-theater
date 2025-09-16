@@ -36,7 +36,7 @@ export function loadBackground(scene) {
     scene.add(backLight);
     const backLightHelper = new THREE.PointLightHelper(backLight)
     scene.add(backLightHelper);
-    const frontLight = new THREE.PointLight(0xffffff, 0.3, 0); 
+    const frontLight = new THREE.PointLight(0xffffff, 0.1, 0); 
     frontLight.position.set(21,-2,0);
     scene.add(frontLight);
     const frontLightHelper = new THREE.PointLightHelper(frontLight)
