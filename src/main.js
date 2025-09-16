@@ -20,8 +20,8 @@ let isVRMAPlaying = false;
 const clock = new THREE.Clock();
 
 // Renderer
-const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); 
-renderer.setSize(window.innerWidth-20, window.innerHeight-20);
+const renderer = new THREE.WebGLRenderer({ antialias: true }); // alpha: true
+renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 document.body.appendChild(renderer.domElement);
 
@@ -96,8 +96,8 @@ const camParams = {
   radius: 20,
   yawCenter: -Math.PI/2,
   pitchCenter: 0,
-  yawRange: Math.PI / 12,   // left/right limit
-  pitchRange: Math.PI / 32, // up/down limit
+  yawRange: Math.PI / 32,   // left/right limit
+  pitchRange: Math.PI / 64, // up/down limit
   smooth: 6,
 };
 
